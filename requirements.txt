@@ -1,4 +1,4 @@
 arcade
-sklearn
+scikit-learn
 pandas
 tensorflow
