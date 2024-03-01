@@ -9,7 +9,7 @@ class Game(arcade.Window):
         self.background_game = arcade.load_texture("images/Backgrande.png")
         self.flag = 0
         self.snake = Snake(self)
-        self.Apple = Apple(self)
+        self.apple = Apple(self)
         self.dataset = []
 
     def on_draw(self): 
@@ -17,7 +17,7 @@ class Game(arcade.Window):
         arcade.draw_lrwh_rectangle_textured(0, 0, self.width, self.height, self.background_game)
         
         self.snake.draw()
-        self.Apple.draw()
+        self.apple.draw()
         
         output = f"Score: {self.snake.score}"
         arcade.draw_text(output, 10, 20, arcade.color.BLUE, 20)
@@ -40,25 +40,25 @@ class Game(arcade.Window):
 
         # # موقعیت سیب نسبت به سر مار
 
-        # if self.snake.center_x == self.Apple.center_x and self.snake.center_y < self.Apple.center_y:
+        # if self.snake.center_x == self.apple.center_x and self.snake.center_y < self.apple.center_y:
         #     data["a0"] = 1
         #     data["a1"] = 0
         #     data["a2"] = 0
         #     data["a3"] = 0
 
-        # elif self.snake.center_x == self.Apple.center_x and self.snake.center_y > self.Apple.center_y:
+        # elif self.snake.center_x == self.apple.center_x and self.snake.center_y > self.apple.center_y:
         #     data["a0"] = 0
         #     data["a1"] = 0
         #     data["a2"] = 1
         #     data["a3"] = 0
 
-        # elif self.snake.center_x < self.Apple.center_x and self.snake.center_y == self.Apple.center_y:
+        # elif self.snake.center_x < self.apple.center_x and self.snake.center_y == self.apple.center_y:
         #     data["a0"] = 0
         #     data["a1"] = 1
         #     data["a2"] = 0
         #     data["a3"] = 0
 
-        # elif self.snake.center_x > self.Apple.center_x and self.snake.center_y == self.Apple.center_y:
+        # elif self.snake.center_x > self.apple.center_x and self.snake.center_y == self.apple.center_y:
         #     data["a0"] = 0
         #     data["a1"] = 0
         #     data["a2"] = 0
@@ -104,47 +104,47 @@ class Game(arcade.Window):
 
         data["ws"] = self.snake.center_x
         data["hs"] = self.snake.center_y
-        data["wa"] = self.Apple.center_x
-        data["ha"] = self.snake.center_y
+        data["wa"] = self.apple.center_x
+        data["ha"] = self.apple.center_y
 
-        if self.snake.center_y < self.Apple.center_y:
+        if self.snake.center_y < self.apple.center_y:
             data['a0'] = 1  
             data['a1'] = 0  
             data['a2'] = 0
             data['a3'] = 0
-        elif self.snake.center_y > self.Apple.center_y:    
+        elif self.snake.center_y > self.apple.center_y:    
             data['a0'] = 0
             data['a1'] = 0
             data['a2'] = 1
             data['a3'] = 0
-        elif self.snake.center_x < self.Apple.center_x:
+        elif self.snake.center_x < self.apple.center_x:
             data['a0'] = 0
             data['a1'] = 1
             data['a2'] = 0
             data['a3'] = 0
-        elif self.snake.center_x > self.Apple.center_x:    
+        elif self.snake.center_x > self.apple.center_x:    
             data['a0'] = 0
             data['a1'] = 0
             data['a2'] = 0
             data['a3'] = 1
 
-        if arcade.check_for_collision(self.snake, self.Apple):
-            self.snake.eat(self.Apple)  
-            self.Apple = Apple(self)
+        if arcade.check_for_collision(self.snake, self.apple):
+            self.snake.eat(self.apple)  
+            self.apple = Apple(self)
             
-        if self.snake.center_y > self.Apple.center_y:
+        if self.snake.center_y > self.apple.center_y:
             self.snake.change_x = 0
             self.snake.change_y = -1
             data["direction"] = 2        
-        elif self.snake.center_y < self.Apple.center_y:
+        elif self.snake.center_y < self.apple.center_y:
             self.snake.change_x = 0
             self.snake.change_y = 1
             data["direction"] = 0        
-        elif self.snake.center_x > self.Apple.center_x:
+        elif self.snake.center_x > self.apple.center_x:
             self.snake.change_x = -1
             self.snake.change_y = 0
             data["direction"] = 3        
-        elif self.snake.center_x < self.Apple.center_x:
+        elif self.snake.center_x < self.apple.center_x:
             self.snake.change_x = 1
             self.snake.change_y = 0
             data["direction"] = 1

@@ -32,74 +32,13 @@ class Game(arcade.Window):
     def on_update(self, delta_time:float):
         self.snake.move() 
         
-        # data = {'w0':None,
-        #         'w1':None,
-        #         'w2':None,
-        #         'w3':None,
-        #         'a0':None,
-        #         'a1':None,
-        #         'a2':None,
-        #         'a3':None,
-        #         'b0':None,
-        #         'b1':None,
-        #         'b2':None,
-        #         'b3':None}
-                
-        # if self.snake.center_x == self.Apple.center_x and self.snake.center_y < self.Apple.center_y:
-        #     data['a0'] = 1  
-        #     data['a1'] = 0  
-        #     data['a2'] = 0
-        #     data['a3'] = 0
-        # elif self.snake.center_x == self.Apple.center_x and self.snake.center_y > self.Apple.center_y:    
-        #     data['a0'] = 0
-        #     data['a1'] = 0
-        #     data['a2'] = 1
-        #     data['a3'] = 0
-        # elif self.snake.center_x < self.Apple.center_x and self.snake.center_y == self.Apple.center_y:
-        #     data['a0'] = 0
-        #     data['a1'] = 1
-        #     data['a2'] = 0
-        #     data['a3'] = 0
-        # elif self.snake.center_x > self.Apple.center_x and self.snake.center_y == self.Apple.center_y:    
-        #     data['a0'] = 0
-        #     data['a1'] = 0
-        #     data['a2'] = 0
-        #     data['a3'] = 1
-        
-        # data['w0'] = self.height - self.snake.center_y 
-        # data['w1'] = self.width - self.snake.center_x  
-        # data['w2'] = self.snake.center_y
-        # data['w3'] = self.snake.center_x
-        
-        # for part in self.snake.body:
-        #     if self.snake.center_x == part['x'] and self.snake.center_y < part['y']:
-        #         data['b0'] = 1
-        #         data['b1'] = 0
-        #         data['b2'] = 0
-        #         data['b3'] = 0
-        #     elif self.snake.center_x == part['x'] and self.snake.center_y > part['y']:
-        #         data['b0'] = 0
-        #         data['b1'] = 0
-        #         data['b2'] = 1
-        #         data['b3'] = 0   
-        #     elif self.snake.center_x < part['x'] and self.snake.center_y == part['y']:
-        #         data['b0'] = 0
-        #         data['b1'] = 1
-        #         data['b2'] = 0
-        #         data['b3'] = 0   
-        #     elif self.snake.center_x > part['x'] and self.snake.center_y == part['y']:
-        #         data['b0'] = 0
-        #         data['b1'] = 0
-        #         data['b2'] = 0
-        #         data['b3'] = 1
-
         data = {"ws":None, "hs":None, "wa":None, "ha":None,
                 "a0":None, "a1":None, "a2":None, "a3":None}
 
         data["ws"] = self.snake.center_x
         data["hs"] = self.snake.center_y
         data["wa"] = self.Apple.center_x
-        data["ha"] = self.snake.center_y
+        data["ha"] = self.Apple.center_y
 
         if self.snake.center_y < self.Apple.center_y:
             data['a0'] = 1  
