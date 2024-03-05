@@ -1,4 +1,5 @@
 import tensorflow as tf
+import random
 import pandas as pd
 import arcade
 from Apple import Apple
@@ -11,6 +12,7 @@ class Game(arcade.Window):
         self.flag = 0
         self.snake = Snake(self)
         self.Apple = Apple(self)
+        self.direction = []
         self.model = tf.keras.models.load_model("snake_model.h5")
 
     def on_draw(self): 
@@ -69,6 +71,9 @@ class Game(arcade.Window):
 
         output = self.model.predict(data) 
         direction = output.argmax()
+        self.direction.append(direction)
+        print(self.direction)
+
         print(direction)
 
         if direction == 0:

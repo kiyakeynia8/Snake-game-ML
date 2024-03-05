@@ -31,73 +31,6 @@ class Game(arcade.Window):
     def on_update(self, delta_time:float):
         self.snake.move()
 
-        # # جمع آوری دیتا
-
-        # data = {"w0":None, "w1":None, "w2":None, "w3":None,
-        #         "a0":None, "a1":None, "a2":None, "a3":None,
-        #         "b0":None, "b1":None, "b2":None, "b3":None,
-        #         "direction":None}
-
-        # # موقعیت سیب نسبت به سر مار
-
-        # if self.snake.center_x == self.apple.center_x and self.snake.center_y < self.apple.center_y:
-        #     data["a0"] = 1
-        #     data["a1"] = 0
-        #     data["a2"] = 0
-        #     data["a3"] = 0
-
-        # elif self.snake.center_x == self.apple.center_x and self.snake.center_y > self.apple.center_y:
-        #     data["a0"] = 0
-        #     data["a1"] = 0
-        #     data["a2"] = 1
-        #     data["a3"] = 0
-
-        # elif self.snake.center_x < self.apple.center_x and self.snake.center_y == self.apple.center_y:
-        #     data["a0"] = 0
-        #     data["a1"] = 1
-        #     data["a2"] = 0
-        #     data["a3"] = 0
-
-        # elif self.snake.center_x > self.apple.center_x and self.snake.center_y == self.apple.center_y:
-        #     data["a0"] = 0
-        #     data["a1"] = 0
-        #     data["a2"] = 0
-        #     data["a3"] = 1
-
-        # # فاصله سر مار تا دیوار ها
-
-        # data["w0"] = self.height - self.snake.center_y
-        # data["w1"] = self.width - self.snake.center_x
-        # data["w2"] = self.snake.center_y
-        # data["w3"] = self.snake.center_x
-
-        # # موقعیت سر مار نسبت به بدن خودش
-
-        # for part in self.snake.body:
-        #     if self.snake.center_x == part["x"] and self.snake.center_y < part["y"]:
-        #         data["b0"] = 1
-        #         data["b1"] = 0
-        #         data["b2"] = 0
-        #         data["b3"] = 0
-            
-        #     elif self.snake.center_x == part["x"] and self.snake.center_y > part["y"]:
-        #         data["b0"] = 0
-        #         data["b1"] = 0
-        #         data["b2"] = 1
-        #         data["b3"] = 0
-            
-        #     elif self.snake.center_x < part["x"] and self.snake.center_y == part["y"]:
-        #         data["b0"] = 0
-        #         data["b1"] = 1
-        #         data["b2"] = 0
-        #         data["b3"] = 0
-            
-        #     elif self.snake.center_x > part["x"] and self.snake.center_y == part["y"]:
-        #         data["b0"] = 0
-        #         data["b1"] = 0
-        #         data["b2"] = 0
-        #         data["b3"] = 1
-
         data = {"ws":None, "hs":None, "wa":None, "ha":None,
                 "a0":None, "a1":None, "a2":None, "a3":None,
                 "direction":None}
@@ -149,7 +82,13 @@ class Game(arcade.Window):
             self.snake.change_y = 0
             data["direction"] = 1
 
-        self.dataset.append(data)
+        if len(self.dataset) == 0:
+            self.dataset.append(data)
+        
+        if self.dataset[-1]["direction"] != data["direction"]:
+            self.dataset.append(data)
+
+        print(len(self.dataset))
 
     def on_key_release(self, symbol, modifiers):
         if symbol == arcade.key.Q:
