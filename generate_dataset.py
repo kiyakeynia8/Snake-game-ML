@@ -1,3 +1,4 @@
+import random
 import arcade
 import pandas as pd
 from Apple import Apple
@@ -82,11 +83,11 @@ class Game(arcade.Window):
             self.snake.change_y = 0
             data["direction"] = 1
 
-        if len(self.dataset) == 0:
+        if len(self.dataset) < 3:
             self.dataset.append(data)
-        
-        if self.dataset[-1]["direction"] != data["direction"]:
-            self.dataset.append(data)
+
+        elif self.dataset[-1]["direction"] != data["direction"] or random.random() < 0.05:
+                self.dataset.append(data)
 
         print(len(self.dataset))
 
