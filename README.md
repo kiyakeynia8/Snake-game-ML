@@ -1,7 +1,7 @@
 # Snake game with Machine Learning
 
 <p align="center"> 
-  <img src="https://github.com/kiyakeynia8/Snake-game-ML/blob/main/Snake.mp4" alt="Snake" /> 
+  <img src="Snake.mp4" alt="Snake" /> 
 </p>
 
 ### loss: 0.1380 - accuracy: 0.9413
